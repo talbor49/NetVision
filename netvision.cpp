@@ -1,40 +1,24 @@
-#include <tins/tins.h>
-#include <iostream>
+#include <SFML/Graphics.hpp>
 
-using std::cout;
-using std::endl;
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Green);
 
-using namespace Tins;
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
 
-bool callback(const PDU& pdu) {
-    // The packet probably looks like this:
-    //
-    // EthernetII / IP / UDP / RawPDU
-    //
-    // So we retrieve the RawPDU layer, and construct a 
-    // DNS PDU using its contents.
-    DNS dns = pdu.rfind_pdu<RawPDU>().to<DNS>();
-    
-    // Retrieve the queries and print the domain name:
-    for (const auto& query : dns.queries()) {
-        cout << query.dname() << std::endl;
+        window.clear();
+        window.draw(shape);
+        window.display();
     }
-    return true;
-}
 
-int main(int argc, char* argv[]) {
-    if(argc != 2) {
-        cout << "Usage: " <<* argv << " <interface>" << endl;
-        return 1;
-    }
-    // Sniff on the provided interface in promiscuos mode
-    SnifferConfiguration config;
-    config.set_promisc_mode(true);
-    // Only capture udp packets sent to port 53
-    config.set_filter("udp or tcp");
-    Sniffer sniffer(argv[1], config);
-    
-    // Start the capture
-    sniffer.sniff_loop(callback);
-	return 0;
+    return 0;
 }

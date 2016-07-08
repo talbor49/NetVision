@@ -4,4 +4,4 @@ add_executable(NetVision netvision.cpp)
 
 ADD_DEFINITIONS( -std=c++11 )
 
-target_link_libraries(NetVision pthread tins)
+target_link_libraries(NetVision pthread tins sfml-graphics sfml-window sfml-system)
