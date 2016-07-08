@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/example.dir/dns_queries.cpp.o  -o example -rdynamic -lpthread -ltins 

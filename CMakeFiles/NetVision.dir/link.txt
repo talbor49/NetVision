@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/NetVision.dir/netvision.cpp.o  -o NetVision -rdynamic -lpthread -ltins 
