@@ -1,0 +1,3 @@
+/home/tal/dev/netvision/CMakeFiles/edit_cache.dir
+/home/tal/dev/netvision/CMakeFiles/rebuild_cache.dir
+/home/tal/dev/netvision/CMakeFiles/Tutorial.dir
