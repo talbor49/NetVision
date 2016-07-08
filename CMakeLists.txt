@@ -1,9 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (NetVision)
-add_executable(Netvision dns_queries.cpp)
+add_executable(NetVision netvision.cpp)
 
-ADD_DEFINITIONS(-std=c++11)
+ADD_DEFINITIONS( -std=c++11 )
 
-target_link_libraries(NetVision pthread)
-target_link_libraries(Netvision tins)
-
+target_link_libraries(NetVision pthread tins)

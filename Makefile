@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/tal/dev/netvision
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Tutorial
+# Target rules for targets named NetVision
 
 # Build rule for target.
-Tutorial: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Tutorial
-.PHONY : Tutorial
+NetVision: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NetVision
+.PHONY : NetVision
 
 # fast build rule for target.
-Tutorial/fast:
-	$(MAKE) -f CMakeFiles/Tutorial.dir/build.make CMakeFiles/Tutorial.dir/build
-.PHONY : Tutorial/fast
+NetVision/fast:
+	$(MAKE) -f CMakeFiles/NetVision.dir/build.make CMakeFiles/NetVision.dir/build
+.PHONY : NetVision/fast
 
-dns_queries.o: dns_queries.cpp.o
+netvision.o: netvision.cpp.o
 
-.PHONY : dns_queries.o
+.PHONY : netvision.o
 
 # target to build an object file
-dns_queries.cpp.o:
-	$(MAKE) -f CMakeFiles/Tutorial.dir/build.make CMakeFiles/Tutorial.dir/dns_queries.cpp.o
-.PHONY : dns_queries.cpp.o
+netvision.cpp.o:
+	$(MAKE) -f CMakeFiles/NetVision.dir/build.make CMakeFiles/NetVision.dir/netvision.cpp.o
+.PHONY : netvision.cpp.o
 
-dns_queries.i: dns_queries.cpp.i
+netvision.i: netvision.cpp.i
 
-.PHONY : dns_queries.i
+.PHONY : netvision.i
 
 # target to preprocess a source file
-dns_queries.cpp.i:
-	$(MAKE) -f CMakeFiles/Tutorial.dir/build.make CMakeFiles/Tutorial.dir/dns_queries.cpp.i
-.PHONY : dns_queries.cpp.i
+netvision.cpp.i:
+	$(MAKE) -f CMakeFiles/NetVision.dir/build.make CMakeFiles/NetVision.dir/netvision.cpp.i
+.PHONY : netvision.cpp.i
 
-dns_queries.s: dns_queries.cpp.s
+netvision.s: netvision.cpp.s
 
-.PHONY : dns_queries.s
+.PHONY : netvision.s
 
 # target to generate assembly for a file
-dns_queries.cpp.s:
-	$(MAKE) -f CMakeFiles/Tutorial.dir/build.make CMakeFiles/Tutorial.dir/dns_queries.cpp.s
-.PHONY : dns_queries.cpp.s
+netvision.cpp.s:
+	$(MAKE) -f CMakeFiles/NetVision.dir/build.make CMakeFiles/NetVision.dir/netvision.cpp.s
+.PHONY : netvision.cpp.s
 
 # Help Target
 help:
@@ -156,12 +156,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Tutorial"
-	@echo "... dns_queries.o"
-	@echo "... dns_queries.i"
-	@echo "... dns_queries.s"
+	@echo "... edit_cache"
+	@echo "... NetVision"
+	@echo "... netvision.o"
+	@echo "... netvision.i"
+	@echo "... netvision.s"
 .PHONY : help
 
 
