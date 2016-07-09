@@ -39,12 +39,13 @@ bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
 		//std::cout << "packet id: " << packetId << " tcp dport: " << tcp->dport() << " tcp sport " << tcp->sport() << std::endl;
 		pinterpreter.processTCP(pdu);
 	}
-	else if (udp) {
+	if (udp) {
 		//std::cout << "packet id: " << packetId << " udp dport: " << udp->dport() << " udp sport " << udp->sport() << std::endl;
 		pinterpreter.processUDP(pdu);
 	}
-	else if (arp) {
+	if (arp != NULL) {
 		//std::cout << "packet id: " << packetId << " arp dst ip: " << arp->target_ip_addr() << " arp source ip" << arp->sender_ip_addr() << std::endl;
+		std::cout << "Sniffed an ARP packet" << std::endl;
 		pinterpreter.processARP(pdu);
 	}
 	else if (icmp) {
@@ -73,7 +74,6 @@ void PacketsPreprocessor::sniff(char *interface) {
     SnifferConfiguration config;
     config.set_promisc_mode(true);
     // Only capture udp packets sent to port 53
-    config.set_filter("udp or tcp");
 	Sniffer sniffer(interface, config);
 
     // Start the capture

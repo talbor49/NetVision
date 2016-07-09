@@ -15,6 +15,7 @@ public:
     void setHWAddress(HWAddress<6> address);
     IPv4Address getIPv4Address();
     void setIPv4Address(IPv4Address address);
+	Device(IPv4Address ip, HWAddress<6> hwaddress);
 private:
     HWAddress<6> hwAddress;
     IPv4Address iPv4Address;

@@ -3,6 +3,7 @@
 #include "PacketsPreprocessor.h"
 #include <iostream>
 #include <thread>
+#include <pthread.h>
 
 int main(int argc, char* argv [])
 {
@@ -14,7 +15,10 @@ int main(int argc, char* argv [])
 	   return 1;
 	}
 
-	std::thread sniffer(PacketsPreprocessor::sniff, argv[1]);
+	pthread_t sniffer;
+	std::cout << "Starting sniffer thread" << std::endl;
+	pthread_create(&sniffer, NULL, (void *(*)(void *)) PacketsPreprocessor::sniff, argv[1]);
+	std::cout << "Finished creating sniffing thread" << std::endl;
 
     while (graphics.getWindow()->isOpen())
     {
