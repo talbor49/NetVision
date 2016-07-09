@@ -9,7 +9,7 @@ using namespace Tins;
 
 class PacketsPreprocessor {
 	public:
-		void sniff(std::string* interface);
+		void sniff(char *interface);
 	private:
 		static bool packets_processor(const PDU& pdu);
 
