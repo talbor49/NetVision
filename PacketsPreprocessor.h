@@ -9,9 +9,10 @@ using namespace Tins;
 
 class PacketsPreprocessor {
 	public:
-		void sniff(char *interface);
+		static void sniff(char *interface);
 	private:
 		static bool packets_processor(const PDU& pdu);
+		static int packetId;
 
 };
 

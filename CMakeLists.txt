@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 2.6)
 project (NetVision)
-add_executable(NetVision netvision.cpp graphics.cpp graphics.h netvision.h PacketsPreprocessor.cpp PacketsPreprocessor.h)
+add_executable(NetVision netvision.cpp graphics.cpp graphics.h netvision.h PacketsPreprocessor.cpp PacketsPreprocessor.h PacketInterpreter.cpp PacketInterpreter.h DataCenter.cpp DataCenter.h Device.cpp Device.h)
 
 
 ADD_DEFINITIONS( -std=c++11 )

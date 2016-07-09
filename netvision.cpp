@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "graphics.h"
 #include "PacketsPreprocessor.h"
+#include <iostream>
+#include <thread>
 
 int main(int argc, char* argv [])
 {
@@ -12,7 +14,7 @@ int main(int argc, char* argv [])
 	   return 1;
 	}
 
-	pp.sniff(argv[1]);
+	std::thread sniffer(PacketsPreprocessor::sniff, argv[1]);
 
     while (graphics.getWindow()->isOpen())
     {
