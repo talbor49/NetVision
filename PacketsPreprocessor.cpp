@@ -45,7 +45,6 @@ bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
 	}
 	if (arp != NULL) {
 		//std::cout << "packet id: " << packetId << " arp dst ip: " << arp->target_ip_addr() << " arp source ip" << arp->sender_ip_addr() << std::endl;
-		std::cout << "Sniffed an ARP packet" << std::endl;
 		pinterpreter.processARP(pdu);
 	}
 	else if (icmp) {
