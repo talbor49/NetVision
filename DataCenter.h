@@ -11,12 +11,11 @@
 
 class DataCenter {
 public:
-    DataCenter();
-    void addDevice(Device device);
-    std::vector<Device> getDevices();
-    bool hasDevice(Device& device);
+    static void addDevice(Device* device);
+    static bool hasDevice(Device* device);
+    static std::vector<Device*> getDevices();
 private:
-    std::vector<Device> devices;
+    static std::vector<Device*> devices;
 };
 
 

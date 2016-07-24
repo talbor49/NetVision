@@ -19,9 +19,7 @@ int main(int argc, char* argv [])
 
 
 	pthread_t sniffer;
-	std::cout << "Starting sniffer thread" << std::endl;
 	pthread_create(&sniffer, NULL, (void *(*)(void *)) PacketsPreprocessor::sniff, argv[1]);
-	std::cout << "Finished creating sniffing thread" << std::endl;
 
     NetworkUtils networkUtils(interface);
     networkUtils.scanNetwork();

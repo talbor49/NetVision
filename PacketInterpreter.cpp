@@ -7,7 +7,6 @@
 static HWAddress<6> broadcast("00:00:00:00:00:00");
 using namespace Tins;
 
-DataCenter dc;
 
 PacketInterpreter::PacketInterpreter() { }
 
@@ -20,9 +19,9 @@ void PacketInterpreter::processARP(const PDU &pdu) {
     IPv4Address target_ip = arp.target_ip_addr();
 
 	if (sender_hw != broadcast) {
-		Device sender(sender_ip, sender_hw);
-		if (!dc.hasDevice(sender)) {
-			dc.addDevice(sender);
+		Device* sender = new Device(sender_ip, sender_hw);
+		if (!DataCenter::hasDevice(sender)) {
+            DataCenter::addDevice(sender);
 		}
 	}
 }

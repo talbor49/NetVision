@@ -6,6 +6,7 @@
 #define NETVISION_GRAPHICS_H
 
 #include <SFML/Graphics.hpp>
+#include "DataCenter.h"
 
 class Graphics {
 
@@ -16,9 +17,10 @@ public:
     sf::RenderWindow * getWindow();
 
 private:
+    DataCenter dataCenter;
     sf::RenderWindow *window;
     sf::CircleShape *shape;
-    void draw_object(Device device, int x, int y);
+    void draw_device(const Device* device, int x, int y);
 };
 
 #endif //NETVISION_GRAPHICS_H
