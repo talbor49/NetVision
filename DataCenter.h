@@ -13,9 +13,9 @@ class DataCenter {
 public:
     static void addDevice(Device* device);
     static bool hasDevice(Device* device);
-    static std::vector<Device*> getDevices();
+    static std::vector<Device*>* getDevices();
 private:
-    static std::vector<Device*> devices;
+    static std::vector<Device*>* devices;
 };
 
 

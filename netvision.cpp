@@ -8,8 +8,8 @@
 
 int main(int argc, char* argv [])
 {
-	Graphics graphics = Graphics();
-	PacketsPreprocessor pp;
+	Graphics* graphics = new Graphics();
+	PacketsPreprocessor* pp = new PacketsPreprocessor();
 	
 	if(argc != 2) {
 		std::cout << "Usage: " << *argv << " <interface>" << std::endl;
@@ -21,14 +21,18 @@ int main(int argc, char* argv [])
 	pthread_t sniffer;
 	pthread_create(&sniffer, NULL, (void *(*)(void *)) PacketsPreprocessor::sniff, argv[1]);
 
-    NetworkUtils networkUtils(interface);
-    networkUtils.scanNetwork();
+    NetworkUtils* networkUtils = new NetworkUtils(interface);
+    networkUtils->scanNetwork();
 
 
-    while (graphics.getWindow()->isOpen())
+    while (graphics->getWindow()->isOpen())
     {
-		graphics.draw_screen();
+		graphics->draw_screen();
 	}
+
+    delete graphics;
+    delete pp;
+    delete networkUtils;
 
     return 0;
 }

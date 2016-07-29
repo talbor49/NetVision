@@ -11,15 +11,17 @@
 class Graphics {
 
 public:
-    enum Device {Phone, PC};
+    enum DeviceType {Phone, PC};
     Graphics();
     void draw_screen();
     sf::RenderWindow * getWindow();
 
+    ~Graphics();
+
 private:
-    DataCenter dataCenter;
+    const sf::Font* ipFont;
+    sf::Texture *deviceTexture;
     sf::RenderWindow *window;
-    sf::CircleShape *shape;
     void draw_device(const Device* device, int x, int y);
 };
 
