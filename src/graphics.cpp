@@ -12,26 +12,22 @@ Graphics::Graphics() {
 
     deviceTexture = new sf::Texture();
 
-    std::cout << "Going to load image" << std::endl;
     if (!deviceTexture->loadFromFile("device.png"))
     {
         std::cout << "Error loading image 'device.png'" << std::endl;
     }
-
-    std::cout << "Loaded image" << std::endl;
 }
 
 
 
 void Graphics::draw_device(const Device* device, int x, int y) {
-    sf::Sprite* deviceSprite = new sf::Sprite(*deviceTexture);
-    deviceSprite->setPosition(x, y);
-    deviceSprite->setScale((float)DEVICE_IMAGE_WIDTH / deviceTexture->getSize().x, (float)DEVICE_IMAGE_HEIGHT / deviceTexture->getSize().y);
-    sf::Text* ipText = new sf::Text(device->getIPv4Address()->to_string(), *ipFont, 12);
-    ipText->setPosition(x, y + DEVICE_IMAGE_HEIGHT);
-    window->draw(*ipText);
-    window->draw(*deviceSprite);
-    delete deviceSprite;
+    sf::Sprite deviceSprite(*deviceTexture);
+    deviceSprite.setPosition(x, y);
+    deviceSprite.setScale((float)DEVICE_IMAGE_WIDTH / deviceTexture->getSize().x, (float)DEVICE_IMAGE_HEIGHT / deviceTexture->getSize().y);
+    sf::Text ipText(device->getIPv4Address()->to_string(), *ipFont, 12);
+    ipText.setPosition(x, y + DEVICE_IMAGE_HEIGHT);
+    window->draw(ipText);
+    window->draw(deviceSprite);
 }
 
 void Graphics::draw_screen() {
@@ -64,5 +60,6 @@ sf::RenderWindow* Graphics::getWindow() {
 
 Graphics::~Graphics() {
     delete window;
+    delete ipFont;
     delete deviceTexture;
 }
