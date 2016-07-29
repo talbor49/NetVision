@@ -3,23 +3,36 @@
 //
 #ifndef PACKET_INTERPRETER_H
 #define PACKET_INTERPRETER_H
+
+#include <SFML/System/String.hpp>
 #include "PacketInterpreter.h"
 
-static HWAddress<6>* broadcast = new HWAddress<6>("00:00:00:00:00:00");
+
+std::string br = "00:00:00:00:00:00";
+static const HWAddress<6>& broadcast(br);
 using namespace Tins;
 
 
-PacketInterpreter::PacketInterpreter() { }
+PacketInterpreter::PacketInterpreter() {
+}
 
 void PacketInterpreter::processARP(const PDU &pdu) {
 	const ARP& arp = pdu.rfind_pdu<ARP>();
-    HWAddress<6>* sender_hw= new HWAddress<6>(arp.sender_hw_addr());
-    IPv4Address* sender_ip = new IPv4Address(arp.sender_ip_addr());
+    if(DataCenter::getDevices()->size() > 0) {
+        Device& whatisinmemory = DataCenter::getDevices()->back();
 
-	if (*sender_hw != *broadcast) {
-		Device* sender = new Device(sender_ip, sender_hw);
+        std::cout << "Watch what there's AT THE START OF THE FUNCTION in memory: " << whatisinmemory.getIPv4Address() << std::endl;
+    }
+    ARP::hwaddress_type sender_hw = arp.sender_hw_addr();
+    IPv4Address sender_ip = arp.sender_ip_addr();
+
+
+    if (!sender_hw.is_broadcast()) {
+		Device sender(sender_ip, sender_hw);
 		if (!DataCenter::hasDevice(sender)) {
-            DataCenter::addDevice(sender);
+            DataCenter::addDevice(Device(*new IPv4Address(sender_ip), *new HWAddress<6>(sender_hw)));
+		} else {
+			std::cout << "it already has device :" << sender.getIPv4Address().to_string() << std::endl;
 		}
 	}
 }

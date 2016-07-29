@@ -11,14 +11,12 @@ using namespace Tins;
 
 class Device {
 public:
-    const HWAddress<6>* getHWAddress() const;
-    void setHWAddress(HWAddress<6>* address);
-    const IPv4Address* getIPv4Address() const;
-    void setIPv4Address(IPv4Address* address);
-	Device(IPv4Address* ip, HWAddress<6>* hwaddress);
+    const HWAddress<6>& getHWAddress() const;
+    const IPv4Address& getIPv4Address() const;
+	Device(const IPv4Address& ip, const HWAddress<6>& hwaddress);
 private:
-    HWAddress<6>* hwAddress;
-    IPv4Address* iPv4Address;
+    const HWAddress<6>& hwAddress;
+    const IPv4Address& iPv4Address;
 };
 
 

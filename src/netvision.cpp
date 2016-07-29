@@ -1,19 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include "graphics.h"
 #include "PacketsPreprocessor.h"
-#include <iostream>
 #include <thread>
-#include <pthread.h>
 #include "NetworkUtils.h"
 
 int main(int argc, char* argv [])
 {
-	Graphics* graphics = new Graphics();
-	PacketsPreprocessor* pp = new PacketsPreprocessor();
-	
+	Graphics graphics;
+
 	if(argc != 2) {
 		std::cout << "Usage: " << *argv << " <interface>" << std::endl;
-	   return 1;
+	    return 1;
 	}
     std::string interface = argv[1];
 
@@ -21,18 +18,14 @@ int main(int argc, char* argv [])
 	pthread_t sniffer;
 	pthread_create(&sniffer, NULL, (void *(*)(void *)) PacketsPreprocessor::sniff, argv[1]);
 
-    NetworkUtils* networkUtils = new NetworkUtils(interface);
-    networkUtils->scanNetwork();
+    NetworkUtils networkUtils(interface);
+    networkUtils.scanNetwork();
 
 
-    while (graphics->getWindow()->isOpen())
+    while (graphics.getWindow()->isOpen())
     {
-		graphics->draw_screen();
+		graphics.draw_screen();
 	}
-
-    delete graphics;
-    delete pp;
-    delete networkUtils;
 
     return 0;
 }

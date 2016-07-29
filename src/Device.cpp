@@ -7,25 +7,14 @@
 
 using namespace Tins;
 
-Device::Device(IPv4Address* ip, HWAddress<6>* hw) {
-    iPv4Address = ip;
-    hwAddress = hw;
-}
+Device::Device(const IPv4Address& ip, const HWAddress<6>& hw) : hwAddress(hw), iPv4Address(ip) {}
 
-const HWAddress<6>* Device::getHWAddress() const{
+const HWAddress<6>& Device::getHWAddress() const{
     return hwAddress;
 }
 
-void Device::setHWAddress(HWAddress<6>* address) {
-    hwAddress = address;
-}
-
-const IPv4Address* Device::getIPv4Address() const {
-    return (const IPv4Address*)iPv4Address;
-}
-
-void Device::setIPv4Address(IPv4Address* address) {
-    iPv4Address = address;
+const IPv4Address& Device::getIPv4Address() const {
+    return iPv4Address;
 }
 
 int deviceType() {
