@@ -8,8 +8,8 @@
 using namespace Tins;
 
 Device::Device(IPv4Address* ip, HWAddress<6>* hw) {
-	iPv4Address = ip;
-	hwAddress = hw;
+    iPv4Address = ip;
+    hwAddress = hw;
 }
 
 const HWAddress<6>* Device::getHWAddress() const{

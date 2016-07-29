@@ -10,13 +10,13 @@ std::vector<Device*>* DataCenter::devices = new std::vector<Device *>();
 
 void DataCenter::addDevice(Device* device) {
     devices->push_back(device);
-    std::cout << "Added device: " << device->getIPv4Address() << std::endl;
+    std::cout << "Added device: " << device->getIPv4Address()->to_string() << std::endl;
 }
 
 
 bool DataCenter::hasDevice(Device* device) {
     for (auto& d : *devices) {
-        if (d->getIPv4Address() == device->getIPv4Address()) {
+        if (*d->getIPv4Address() == *device->getIPv4Address()) {
             return true;
         }
     }
@@ -27,6 +27,8 @@ std::vector<Device*>* DataCenter::getDevices() {
     return devices;
 }
 
-
+DataCenter::~DataCenter() {
+    delete devices;
+}
 
 #endif

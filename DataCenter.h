@@ -14,6 +14,7 @@ public:
     static void addDevice(Device* device);
     static bool hasDevice(Device* device);
     static std::vector<Device*>* getDevices();
+    ~DataCenter();
 private:
     static std::vector<Device*>* devices;
 };
