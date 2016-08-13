@@ -19,8 +19,18 @@ public:
     ~Graphics();
 
 private:
+    void loadImages();
     sf::Font ipFont;
+
+    sf::Sprite deviceSprite;
     sf::Texture deviceTexture;
+
+    sf::Sprite backgroundSprite;
+    sf::Texture backgroundTexture;
+
+    sf::Sprite cloudSprite;
+    sf::Texture cloudTexture;
+
     sf::RenderWindow* window;
     void draw_device(const Device& device, int x, int y);
 };

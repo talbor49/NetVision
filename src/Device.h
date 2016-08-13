@@ -14,6 +14,7 @@ public:
     const HWAddress<6>& getHWAddress() const;
     const IPv4Address& getIPv4Address() const;
 	Device(const IPv4Address& ip, const HWAddress<6>& hwaddress);
+    ~Device();
 private:
     const HWAddress<6>& hwAddress;
     const IPv4Address& iPv4Address;

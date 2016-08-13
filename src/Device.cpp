@@ -17,6 +17,9 @@ const IPv4Address& Device::getIPv4Address() const {
     return iPv4Address;
 }
 
+Device::~Device() {
+}
+
 int deviceType() {
 
 }
