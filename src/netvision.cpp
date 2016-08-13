@@ -2,8 +2,10 @@
 #include "graphics.h"
 #include "PacketsPreprocessor.h"
 #include <thread>
-#include <chrono>
+#include <stdlib.h>
 #include "NetworkUtils.h"
+#include "sys/sysinfo.h"
+#include <unistd.h>
 
 
 int main(int argc, char* argv [])
@@ -23,11 +25,11 @@ int main(int argc, char* argv [])
     NetworkUtils networkUtils(interface);
     networkUtils.scanNetwork();
 
-
     while (graphics.getWindow()->isOpen())
     {
 		graphics.draw_screen();
-	}
+        usleep(20 * 1000);
+    }
 
     return 0;
 }

@@ -26,7 +26,6 @@ void PacketInterpreter::processARP(const PDU &pdu) {
 		Device sender(sender_ip, sender_hw);
 		if (!DataCenter::hasDevice(sender)) {
             DataCenter::addDevice(Device(*new IPv4Address(sender_ip), *new HWAddress<6>(sender_hw)));
-            std::cout << "DID NEW !!!" << std::endl;
 		}
 	}
 }

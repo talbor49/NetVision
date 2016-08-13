@@ -35,8 +35,8 @@ void Graphics::draw_screen() {
 
     window->draw(backgroundSprite);
     window->draw(cloudSprite);
-
-
+//
+//
     int x = 0;
     int y = WINDOW_HEIGHT/2;
     std::vector<Device>* devices = DataCenter::getDevices();
