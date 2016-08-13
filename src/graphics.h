@@ -11,7 +11,6 @@
 class Graphics {
 
 public:
-    enum DeviceType {Phone, PC};
     Graphics();
     void draw_screen();
     sf::RenderWindow* getWindow();
@@ -25,6 +24,9 @@ private:
     sf::Sprite deviceSprite;
     sf::Texture deviceTexture;
 
+    sf::Sprite routerSprite;
+    sf::Texture routerTexture;
+
     sf::Sprite backgroundSprite;
     sf::Texture backgroundTexture;
 
@@ -32,7 +34,7 @@ private:
     sf::Texture cloudTexture;
 
     sf::RenderWindow* window;
-    void draw_device(const Device& device, int x, int y);
+    void draw_device(const Device& device);
 };
 
 #endif //NETVISION_GRAPHICS_H

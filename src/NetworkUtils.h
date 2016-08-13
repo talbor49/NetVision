@@ -6,24 +6,24 @@
 #define NETVISION_PACKETSSENDER_H
 
 #include "tins/tins.h"
+#include "DataCenter.h"
 
 using namespace Tins;
 
 class NetworkUtils {
 public:
-    void scanNetwork();
-    NetworkUtils(std::string interface);
+    static void scanNetwork();
+    static void initialize(std::string interface);
 
-private:
-    std::string interface;
+    static IPv4Address default_gateway;
+    static IPv4Address network_mask;
+    static std::string interface;
 
-    NetworkInterface networkInterface;
+    static NetworkInterface networkInterface;
 
-    IPv4Address default_gateway;
-    IPv4Address network_mask;
 
-    IPv4Address self_ip_address;
-    HWAddress<6> self_mac_address;
+    static IPv4Address self_ip_address;
+    static HWAddress<6> self_mac_address;
 
 };
 

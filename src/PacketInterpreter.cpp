@@ -6,6 +6,7 @@
 
 #include <SFML/System/String.hpp>
 #include "PacketInterpreter.h"
+#include "NetworkUtils.h"
 
 
 std::string br = "00:00:00:00:00:00";
@@ -22,10 +23,15 @@ void PacketInterpreter::processARP(const PDU &pdu) {
     IPv4Address sender_ip = arp.sender_ip_addr();
 
 
-    if (!sender_hw.is_broadcast()) {
-		Device sender(sender_ip, sender_hw);
+    if (sender_ip == NetworkUtils::default_gateway) {
+        Device sender(sender_ip, sender_hw, Device::DeviceType::GATEWAY);
+        if (!DataCenter::hasDevice(sender)) {
+            DataCenter::addDevice(Device(*new IPv4Address(sender_ip), *new HWAddress<6>(sender_hw), Device::DeviceType::GATEWAY));
+        }
+    } else if (!sender_hw.is_broadcast()) {
+		Device sender(sender_ip, sender_hw, Device::DeviceType::DEFAULT);
 		if (!DataCenter::hasDevice(sender)) {
-            DataCenter::addDevice(Device(*new IPv4Address(sender_ip), *new HWAddress<6>(sender_hw)));
+            DataCenter::addDevice(Device(*new IPv4Address(sender_ip), *new HWAddress<6>(sender_hw), Device::DeviceType::DEFAULT));
 		}
 	}
 }

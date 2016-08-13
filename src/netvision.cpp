@@ -22,8 +22,8 @@ int main(int argc, char* argv [])
 	pthread_t sniffer;
 	pthread_create(&sniffer, NULL, (void *(*)(void *)) PacketsPreprocessor::sniff, argv[1]);
 
-    NetworkUtils networkUtils(interface);
-    networkUtils.scanNetwork();
+    NetworkUtils::initialize(interface);
+    NetworkUtils::scanNetwork();
 
     while (graphics.getWindow()->isOpen())
     {
