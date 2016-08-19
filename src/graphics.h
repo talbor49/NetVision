@@ -19,10 +19,15 @@ public:
 
 private:
     void loadImages();
+    void drawInternalDevice(const Device& device);
+    void drawExternalDevice(const Device& device);
     sf::Font ipFont;
 
     sf::Sprite deviceSprite;
     sf::Texture deviceTexture;
+
+    sf::Sprite serverSprite;
+    sf::Texture serverTexture;
 
     sf::Sprite routerSprite;
     sf::Texture routerTexture;

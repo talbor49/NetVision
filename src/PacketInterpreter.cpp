@@ -36,7 +36,22 @@ void PacketInterpreter::processARP(const PDU &pdu) {
 	}
 }
 void PacketInterpreter::processTCP(const PDU &pdu) {
+    const IP& ip = pdu.rfind_pdu<IP>();
+    const EthernetII& ether = pdu.rfind_pdu<EthernetII>();
 
+    IPv4Address sender_ip = ip.src_addr();
+    EthernetII::address_type sender_mac = ether.dst_addr();
+    IPv4Address target_ip = ip.src_addr();
+    EthernetII::address_type target_mac = ether.dst_addr();
+
+    Device sender(sender_ip, sender_mac, Device::DeviceType::DEFAULT);
+    if (!DataCenter::hasDevice(sender)) {
+        DataCenter::addDevice(Device(*new IPv4Address(sender_ip), *new HWAddress<6>(sender_mac), Device::DeviceType::DEFAULT));
+    }
+    Device target(target_ip, target_mac, Device::DeviceType::DEFAULT);
+    if (!DataCenter::hasDevice(target)) {
+        DataCenter::addDevice(Device(*new IPv4Address(target_ip), *new HWAddress<6>(target_mac), Device::DeviceType::DEFAULT));
+    }
 }
 void PacketInterpreter::processUDP(const PDU &pdu) {
 

@@ -3,6 +3,7 @@
 //
 
 #include "Device.h"
+#include "NetworkUtils.h"
 
 using namespace Tins;
 
@@ -19,8 +20,38 @@ const IPv4Address& Device::getIPv4Address() const {
 Device::~Device() {
 }
 
+bool Device::isInternal() const {
+	IPv4Range range = IPv4Range::from_mask(NetworkUtils::default_gateway, NetworkUtils::network_mask);
+
+	return range.contains(iPv4Address); // Yey, it belongs to this network
+
+}
+
+std::string Device::deviceManufacturerFromMacAddress(const HWAddress<6>& hw) {
+	// TODO: get device manufacturer from list and return it;
+	return "";
+}
+
 const Device::DeviceType Device::getDeviceType() const {
     return deviceType;
+}
+
+const std::string Device::getDisplayName() const {
+	if (!displayName.empty()) {
+		return displayName;
+	} else {
+		switch(deviceType) {
+			case DeviceType::SELF:
+				return "Self-" + deviceManufacturerFromMacAddress(hwAddress);
+				break;
+			case DeviceType::GATEWAY:
+				return "Router" + deviceManufacturerFromMacAddress(hwAddress);
+				break;
+			default:
+				return deviceManufacturerFromMacAddress(hwAddress);
+				break;
+		}
+	}
 }
 
 int deviceType() {
