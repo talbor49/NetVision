@@ -25,7 +25,7 @@ bool Device::isInternal() const {
 
 std::string Device::deviceManufacturerFromMacAddress(const HWAddress<6>& hw) {
 	// TODO: get device manufacturer from list and return it;
-	return "";
+	return NetworkUtils::vendorFromMac(hw);
 }
 
 const Device::DeviceType Device::getDeviceType() const {
@@ -38,10 +38,10 @@ const std::string Device::getDisplayName() const {
 	} else {
 		switch(deviceType) {
 			case DeviceType::SELF:
-				return "Self-" + deviceManufacturerFromMacAddress(hwAddress);
+				return "Self\n" + deviceManufacturerFromMacAddress(hwAddress);
 				break;
 			case DeviceType::GATEWAY:
-				return "Router" + deviceManufacturerFromMacAddress(hwAddress);
+				return "Router\n" + deviceManufacturerFromMacAddress(hwAddress);
 				break;
 			default:
 				return deviceManufacturerFromMacAddress(hwAddress);

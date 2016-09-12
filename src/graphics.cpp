@@ -59,7 +59,7 @@ void Graphics::draw_screen() {
 }
 
 void Graphics::drawExternalDevice(const Device& device) {
-    sf::Text ipText(device.getIPv4Address().to_string() + "(" + device.getDisplayName() +")", ipFont, 12);
+    sf::Text ipText(device.getIPv4Address().to_string() + "\n" + device.getDisplayName(), ipFont, 12);
     ipText.setColor(sf::Color::Black);
 
 
@@ -82,7 +82,7 @@ void Graphics::drawExternalDevice(const Device& device) {
 }
 
 void Graphics::drawInternalDevice(const Device& device) {
-    sf::Text ipText(device.getIPv4Address().to_string() + "(" + device.getDisplayName() +")", ipFont, 12);
+    sf::Text ipText(device.getIPv4Address().to_string() + "\n" + device.getDisplayName() +"\n", ipFont, 12);
     ipText.setColor(sf::Color::Blue);
 
 
