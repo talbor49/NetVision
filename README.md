@@ -4,7 +4,13 @@ Creates a map of all the devices on a network and the transporation between them
 
 # Compilation
 
-First, install libtins. It is already included as a submodule.
+First, install SFML. instructions can be found here http://www.sfml-dev.org/tutorials/2.0/start-linux.php.
+You can also just do:
+```
+sudo apt-get install libsfml-dev
+```
+
+Second, install libtins. It is already included as a submodule.
 Before compiling, libtins requires libpcap.
 For Debian based systems(Ubuntu, Linux Mint, etc), you can install them by executing this command as root:
 ```
