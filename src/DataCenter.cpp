@@ -8,12 +8,12 @@
 
 std::vector<Device>* DataCenter::devices = new std::vector<Device>();
 
-void DataCenter::addDevice(const Device& device) {
-    devices->push_back(Device(device));
+void DataCenter::addDevice(Device device) {
+    devices->push_back(device);
 }
 
 
-bool DataCenter::hasDevice(const Device& device) {
+bool DataCenter::hasDevice(Device& device) {
     for (Device& d : *devices) {
         if (d.getIPv4Address() == device.getIPv4Address()) {
             return true;
