@@ -1,7 +1,3 @@
-//
-// Created by tal on 09/07/16.
-//
-
 #ifndef NETVISION_GRAPHICS_H
 #define NETVISION_GRAPHICS_H
 

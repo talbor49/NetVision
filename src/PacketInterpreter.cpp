@@ -1,6 +1,3 @@
-//
-// Created by root on 09/07/16.
-//
 #ifndef PACKET_INTERPRETER_H
 #define PACKET_INTERPRETER_H
 

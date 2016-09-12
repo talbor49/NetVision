@@ -1,7 +1,3 @@
-//
-// Created by tal on 09/07/16.
-//
-
 #include "PacketsPreprocessor.h"
 #include <tins/tins.h>
 #include <iostream>

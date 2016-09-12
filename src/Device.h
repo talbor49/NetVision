@@ -1,7 +1,3 @@
-//
-// Created by root on 09/07/16.
-//
-
 #ifndef NETVISION_DEVICE_H
 #define NETVISION_DEVICE_H
 

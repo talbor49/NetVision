@@ -1,7 +1,3 @@
-//
-// Created by root on 09/07/16.
-//
-
 #include "Device.h"
 #include "NetworkUtils.h"
 

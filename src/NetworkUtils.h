@@ -1,7 +1,3 @@
-//
-// Created by talbor49 on 7/25/16.
-//
-
 #ifndef NETVISION_PACKETSSENDER_H
 #define NETVISION_PACKETSSENDER_H
 

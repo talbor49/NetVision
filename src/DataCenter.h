@@ -1,7 +1,3 @@
-//
-// Created by root on 09/07/16.
-//
-
 #ifndef NETVISION_DATACENTER_H
 #define NETVISION_DATACENTER_H
 

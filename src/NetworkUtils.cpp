@@ -1,7 +1,3 @@
-//
-// Created by talbor49 on 7/25/16.
-//
-
 #ifndef NETWORK_UTILS_CPP
 #define NETWORK_UTILS_CPP
 #include "NetworkUtils.h"

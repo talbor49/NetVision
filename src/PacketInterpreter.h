@@ -1,7 +1,3 @@
-//
-// Created by root on 09/07/16.
-//
-
 #ifndef NETVISION_PACKETINTERPRETER_H
 #define NETVISION_PACKETINTERPRETER_H
 
