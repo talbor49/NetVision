@@ -16,7 +16,9 @@ int externalX = WINDOW_WIDTH * 0.55;
 int externalY = DEVICE_IMAGE_HEIGHT*3;
 
 Graphics::Graphics() {
+    std::cout << "Loading images" << std::endl;
     loadImages();
+    std::cout << "Creating the window" << std::endl;
     window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "NetVision");
 }
 

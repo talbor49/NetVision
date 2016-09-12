@@ -7,11 +7,18 @@
 
 #include "tins/tins.h"
 #include "DataCenter.h"
+#include <fstream>
 
 using namespace Tins;
 
 class NetworkUtils {
 public:
+
+
+    static std::map<int, std::string> macToVendor;
+    static void fillVendorMap();
+    static std::string vendorFromMac(HWAddress<6>& mac);
+
     static void scanNetwork();
     static void initialize(std::string interface);
 
