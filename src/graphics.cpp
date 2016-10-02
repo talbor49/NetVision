@@ -20,7 +20,7 @@ void Graphics::draw_screen() {
         window->draw(*ResourceCenter::backgroundSprite);
         window->draw(*ResourceCenter::cloudSprite);
 
-        DeviceGraphics::drawDevices(DataCenter::getDevices(), window);
+        //DeviceGraphics::drawDevices(DataCenter::getDevices(), window);
         window->display();
 }
 

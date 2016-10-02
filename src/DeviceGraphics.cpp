@@ -13,8 +13,12 @@ int DeviceGraphics::externalY = 0;
 sf::RenderWindow* DeviceGraphics::window;
 
 
-void DeviceGraphics::drawDevices(std::vector<Device>* devices, sf::RenderWindow* window1) {
-
+void DeviceGraphics::drawDevices(std::vector<Device>* devices, sf::RenderWindow* window) {
+    for(Device device : *devices) {
+      if(device.getDeviceType() == Device::DeviceType::GATEWAY) {
+        std::cout << "HANDLING GATEWAY DRAWING" << std::endl;
+      }
+    }
 }
 
 

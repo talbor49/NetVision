@@ -9,7 +9,6 @@
 std::vector<Device>* DataCenter::devices = new std::vector<Device>();
 
 void DataCenter::addDevice(Device device) {
-  device
     devices->push_back(device);
 }
 
