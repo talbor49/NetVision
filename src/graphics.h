@@ -3,39 +3,24 @@
 
 #include <SFML/Graphics.hpp>
 #include "DataCenter.h"
+#include "DeviceGraphics.h"
+#include "ResourceCenter.h"
+
+
+#define WINDOW_CENTER_X WINDOW_WIDTH/2
+#define WINDOW_CENTER_Y WINDOW_HEIGHT/2
+
 
 class Graphics {
 
 public:
     Graphics();
     void draw_screen();
+    sf::RenderWindow* window;
     sf::RenderWindow* getWindow();
 
     ~Graphics();
 
-private:
-    void loadImages();
-    void drawInternalDevice(const Device& device);
-    void drawExternalDevice(const Device& device);
-    sf::Font ipFont;
-
-    sf::Sprite deviceSprite;
-    sf::Texture deviceTexture;
-
-    sf::Sprite serverSprite;
-    sf::Texture serverTexture;
-
-    sf::Sprite routerSprite;
-    sf::Texture routerTexture;
-
-    sf::Sprite backgroundSprite;
-    sf::Texture backgroundTexture;
-
-    sf::Sprite cloudSprite;
-    sf::Texture cloudTexture;
-
-    sf::RenderWindow* window;
-    void draw_device(const Device& device);
 };
 
 #endif //NETVISION_GRAPHICS_H

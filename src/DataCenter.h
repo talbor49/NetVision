@@ -5,6 +5,9 @@
 #include <iostream>
 #include <vector>
 
+
+
+
 class DataCenter {
 public:
     static void addDevice(Device device);

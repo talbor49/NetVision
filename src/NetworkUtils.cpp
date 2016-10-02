@@ -54,9 +54,9 @@ void NetworkUtils::initialize(std::string netinterface) {
     self_mac_address = interfaceInfo.hw_addr;
 
     DataCenter::addDevice(Device(self_ip_address, self_mac_address, Device::DeviceType::SELF));
-    
-    
-    
+
+
+
     fillVendorMap();
 }
 
@@ -65,25 +65,15 @@ std::string NetworkUtils::vendorFromMac(const HWAddress<6> & mac) {
     stringmac.erase(std::remove(stringmac.begin(), stringmac.end(), ':'), stringmac.end());
 
 
-    std::cout << "trying for find vendor for mac adddress " << mac.to_string() << std::endl;
 
     int macPrefix;
     std::stringstream macPrefixSS(stringmac);
     macPrefixSS >> std::hex >> macPrefix;
 
-
-    std::cout << "first 3 bytes are in hex " << stringmac << " and in decimal they are " << macPrefix << std::endl;
-
-    // std::cout << stringmac << "=" << macPrefix << std::endl;
-
-
     std::map<int, std::string>::iterator vendor = macToVendor.find(macPrefix);
 
     if (vendor != macToVendor.end()) {
-        //std::cout << vendor->second << std::endl;
-        std::cout << "Found a matching vendor! first 3 bytes " << vendor->first << ", and vendor " << vendor->second << std::endl;
         return vendor->second;
-
     } else {
         return "";
     }
@@ -91,7 +81,6 @@ std::string NetworkUtils::vendorFromMac(const HWAddress<6> & mac) {
 
 void NetworkUtils::fillVendorMap() {
     // Read mac-to-vendor file
-    std::cout << "Opening file mac_to_vendor.txt" << std::endl;
     std::ifstream infile("resources/mac_to_vendor.txt");
     for( std::string line; getline( infile, line ); )
     {
@@ -100,11 +89,6 @@ void NetworkUtils::fillVendorMap() {
         macPrefixSS >> std::hex >> macPrefix;
         std::string vendor = line.substr(7);
         macToVendor.insert(std::pair<int, std::string>(macPrefix, vendor));
-    } 
-
-
-    for (auto const &ent1 : macToVendor) {
-        std::cout << ent1.first << ": " << ent1.second << std::endl;
     }
 
 }
