@@ -7,28 +7,28 @@ using namespace Tins;
 
 class Device {
 public:
-	enum DeviceType {GATEWAY, PHONE, PC, SELF, DEFAULT};
+enum DeviceType {GATEWAY, PHONE, PC, SELF, DEFAULT};
 
 
-	Device(const IPv4Address& ip, const HWAddress<6>& hwaddress, DeviceType deviceT);
-    ~Device();
+Device(const IPv4Address &ip, const HWAddress<6>&hwaddress, DeviceType deviceT);
+~Device();
 
 
-	static std::string deviceManufacturerFromMacAddress(const HWAddress<6>& hw);
+static std::string deviceManufacturerFromMacAddress(const HWAddress<6>& hw);
 
-	bool isInternal() const;
+bool isInternal() const;
 
-    const HWAddress<6>& getHWAddress() const;
-    const std::string getDisplayName() const;
-    const IPv4Address& getIPv4Address() const;
-    const DeviceType getDeviceType() const;
+const HWAddress<6>& getHWAddress() const;
+const std::string getDisplayName() const;
+const IPv4Address& getIPv4Address() const;
+const DeviceType getDeviceType() const;
 
-	
+
 private:
-    const HWAddress<6>& hwAddress;
-    const IPv4Address& iPv4Address;
-	DeviceType deviceType;
-	std::string displayName;
+const HWAddress<6>& hwAddress;
+const IPv4Address& iPv4Address;
+DeviceType deviceType;
+std::string displayName;
 };
 
 

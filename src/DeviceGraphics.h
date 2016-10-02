@@ -9,18 +9,18 @@
 
 namespace DeviceGraphics {
 
-  extern int x;
-  extern int y;
+extern int x;
+extern int y;
 
-  extern int externalX;
-  extern int externalY;
+extern int externalX;
+extern int externalY;
 
-   extern sf::RenderWindow* window;
-  //
-  extern void drawDevices(std::vector<Device>* devices, sf::RenderWindow* window1);
-  extern void drawDevice(Device* device);
-  extern void drawInternalDevice(Device* device);
-  extern void drawExternalDevice(Device* device);
+extern sf::RenderWindow* window;
+//
+extern void drawDevices(std::vector<Device>* devices, sf::RenderWindow* window1);
+extern void drawDevice(Device* device);
+extern void drawInternalDevice(Device* device);
+extern void drawExternalDevice(Device* device);
 
 };
 

@@ -11,22 +11,22 @@ class NetworkUtils {
 public:
 
 
-    static std::map<int, std::string> macToVendor;
-    static void fillVendorMap();
-    static std::string vendorFromMac(const HWAddress<6>& mac);
+static std::map<int, std::string> macToVendor;
+static void fillVendorMap();
+static std::string vendorFromMac(const HWAddress<6>& mac);
 
-    static void scanNetwork();
-    static void initialize(std::string interface);
+static void scanNetwork();
+static void initialize(std::string interface);
 
-    static IPv4Address default_gateway;
-    static IPv4Address network_mask;
-    static std::string interface;
+static IPv4Address default_gateway;
+static IPv4Address network_mask;
+static std::string interface;
 
-    static NetworkInterface networkInterface;
+static NetworkInterface networkInterface;
 
 
-    static IPv4Address self_ip_address;
-    static HWAddress<6> self_mac_address;
+static IPv4Address self_ip_address;
+static HWAddress<6> self_mac_address;
 
 };
 

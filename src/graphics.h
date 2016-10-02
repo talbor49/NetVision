@@ -14,12 +14,12 @@
 class Graphics {
 
 public:
-    Graphics();
-    void draw_screen();
-    sf::RenderWindow* window;
-    sf::RenderWindow* getWindow();
+        Graphics();
+        void draw_screen();
+        sf::RenderWindow* window;
+        sf::RenderWindow* getWindow();
 
-    ~Graphics();
+        ~Graphics();
 
 };
 

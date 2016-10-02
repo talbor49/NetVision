@@ -8,11 +8,11 @@
 using namespace Tins;
 
 class PacketsPreprocessor {
-	public:
-		static void sniff(char *interface);
-	private:
-		static bool packets_processor(const PDU& pdu);
-		static int packetId;
+public:
+static void sniff(char *interface);
+private:
+static bool packets_processor(const PDU& pdu);
+static int packetId;
 
 };
 
