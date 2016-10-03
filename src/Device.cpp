@@ -40,13 +40,13 @@ const std::string Device::getDisplayName() const {
         } else {
                 switch(deviceType) {
                 case DeviceType::SELF:
-                        return "Self\n" + deviceManufacturerFromMacAddress(hwAddress);
+                        return getIPv4Address().to_string() + "(Self)\n" + deviceManufacturerFromMacAddress(hwAddress);
                         break;
                 case DeviceType::GATEWAY:
-                        return "Router\n" + deviceManufacturerFromMacAddress(hwAddress);
+                        return getIPv4Address().to_string() + "(Router)\n" + deviceManufacturerFromMacAddress(hwAddress);
                         break;
                 default:
-                        return deviceManufacturerFromMacAddress(hwAddress);
+                        return getIPv4Address().to_string() + "\n" + deviceManufacturerFromMacAddress(hwAddress);
                         break;
                 }
         }

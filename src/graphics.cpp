@@ -6,6 +6,7 @@ Graphics::Graphics() {
         ResourceCenter::loadImages();
         std::cout << "Creating the window" << std::endl;
         window = new sf::RenderWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "NetVision");
+        ResourceCenter::window = this->window;
 }
 
 
@@ -20,7 +21,7 @@ void Graphics::draw_screen() {
         window->draw(*ResourceCenter::backgroundSprite);
         window->draw(*ResourceCenter::cloudSprite);
 
-        //DeviceGraphics::drawDevices(DataCenter::getDevices(), window);
+        DeviceGraphics::drawDevices(DataCenter::getDevices());
         window->display();
 }
 

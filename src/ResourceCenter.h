@@ -4,12 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
-#define DEVICE_IMAGE_WIDTH 69
-#define DEVICE_IMAGE_HEIGHT 69
-
-#define WINDOW_WIDTH 1000
-#define WINDOW_HEIGHT 750
+#include "GraphicsConstants.h"
 
 
 
