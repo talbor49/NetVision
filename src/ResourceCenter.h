@@ -23,6 +23,8 @@ extern sf::Sprite* routerSprite;
 extern sf::Texture* routerTexture;
 extern sf::Sprite* cloudSprite;
 extern sf::Texture* cloudTexture;
+extern sf::Sprite* myComputerSprite;
+extern sf::Texture* myComputerTexture;
 
 extern sf::RenderWindow* window;
 };

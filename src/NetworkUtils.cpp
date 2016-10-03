@@ -23,6 +23,9 @@ void NetworkUtils::scanNetwork() {
                 // Make the request
                 EthernetII eth = ARP::make_arp_request(addr, self_ip_address, self_mac_address);
                 sender.send(eth, networkInterface);
+                IP ip = IP(addr, networkInterface.addresses().ip_addr) / ICMP();
+                sender.send(ip);
+                // std::cout << "networkInterface.addresses().ip_addr: " << networkInterface.name() << std::endl;
         }
 }
 

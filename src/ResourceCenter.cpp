@@ -13,6 +13,9 @@ sf::Sprite* ResourceCenter::serverSprite = new sf::Sprite();
 sf::Texture* ResourceCenter::serverTexture = new sf::Texture();
 sf::Sprite* ResourceCenter::routerSprite = new sf::Sprite();
 sf::Texture* ResourceCenter::routerTexture = new sf::Texture();
+sf::Sprite* ResourceCenter::myComputerSprite = new sf::Sprite();
+sf::Texture* ResourceCenter::myComputerTexture = new sf::Texture();
+
 
 void ResourceCenter::loadImages() {
         std::cout << "Starting to load images.." << std::endl;
@@ -40,6 +43,10 @@ void ResourceCenter::loadImages() {
         loadImage("resources/server.png", serverTexture, serverSprite);
         serverSprite->setScale((float)DEVICE_IMAGE_WIDTH / serverSprite->getTextureRect().width,
                                (float)DEVICE_IMAGE_HEIGHT / serverSprite->getTextureRect().height);
+
+        loadImage("resources/mycomputer.png", myComputerTexture, myComputerSprite);
+        myComputerSprite->setScale((float)DEVICE_IMAGE_WIDTH / myComputerSprite->getTextureRect().width,
+                               (float)DEVICE_IMAGE_HEIGHT / myComputerSprite->getTextureRect().height);
 }
 
 void ResourceCenter::loadImage(std::string imageFileName, sf::Texture* imageTexture, sf::Sprite* imageSprite) {

@@ -66,7 +66,7 @@ void DeviceGraphics::drawInternalDevice(Device* device) {
                   int routerY = WINDOW_CENTER_Y - DEVICE_IMAGE_HEIGHT/2;
                   routerSprite->setPosition(routerX, routerY);
                   ipText.setPosition(routerX + DEVICE_IMAGE_WIDTH/8, routerY + DEVICE_IMAGE_HEIGHT);
-                  std::cout << "DRAWING ROUTER at position: (" << routerX << "," << routerY << ")" << std::endl;
+                  // std::cout << "DRAWING ROUTER at position: (" << routerX << "," << routerY << ")" << std::endl;
                   window->draw(*routerSprite);
                   break;
                 }
@@ -77,8 +77,8 @@ void DeviceGraphics::drawInternalDevice(Device* device) {
                   incrementInternalPosition();
                   break;
           case Device::DeviceType::SELF:
-                  deviceSprite->setPosition(internalX, internalY);
-                  window->draw(*deviceSprite);
+                  myComputerSprite->setPosition(internalX, internalY);
+                  window->draw(*myComputerSprite);
                   ipText.setPosition(internalX + DEVICE_IMAGE_WIDTH/8, internalY + DEVICE_IMAGE_HEIGHT);
                   incrementInternalPosition();
                   break;

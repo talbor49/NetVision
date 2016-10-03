@@ -38,16 +38,20 @@ const std::string Device::getDisplayName() const {
         if (!displayName.empty()) {
                 return displayName;
         } else {
-                switch(deviceType) {
-                case DeviceType::SELF:
-                        return getIPv4Address().to_string() + "(Self)\n" + deviceManufacturerFromMacAddress(hwAddress);
-                        break;
-                case DeviceType::GATEWAY:
-                        return getIPv4Address().to_string() + "(Router)\n" + deviceManufacturerFromMacAddress(hwAddress);
-                        break;
-                default:
-                        return getIPv4Address().to_string() + "\n" + deviceManufacturerFromMacAddress(hwAddress);
-                        break;
+                if (isInternal()) {
+                  switch(deviceType) {
+                    case DeviceType::SELF:
+                            return getIPv4Address().to_string() + "(Self)\n" + deviceManufacturerFromMacAddress(hwAddress);
+                            break;
+                    case DeviceType::GATEWAY:
+                            return getIPv4Address().to_string() + "(Router)\n" + deviceManufacturerFromMacAddress(hwAddress);
+                            break;
+                    default:
+                            return getIPv4Address().to_string() + "\n" + deviceManufacturerFromMacAddress(hwAddress);
+                            break;
+                  }
+                } else {
+                  return getIPv4Address().to_string(); // + DOMAIN NAME FROM DNS
                 }
         }
 }
