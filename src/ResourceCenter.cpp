@@ -4,8 +4,6 @@
 sf::Font& ResourceCenter::ipFont = *new sf::Font();
 sf::Sprite* ResourceCenter::backgroundSprite = new sf::Sprite();
 sf::Texture* ResourceCenter::backgroundTexture = new sf::Texture();
-sf::Sprite* ResourceCenter::cloudSprite = new sf::Sprite();
-sf::Texture* ResourceCenter::cloudTexture = new sf::Texture();
 sf::RenderWindow* ResourceCenter::window;
 sf::Sprite* ResourceCenter::deviceSprite = new sf::Sprite();
 sf::Texture* ResourceCenter::deviceTexture = new sf::Texture();
@@ -31,10 +29,6 @@ void ResourceCenter::loadImages() {
         loadImage("resources/background.jpg", backgroundTexture, backgroundSprite);
         backgroundSprite->setScale((float)WINDOW_WIDTH / backgroundSprite->getTextureRect().width,
                                    (float)WINDOW_HEIGHT / backgroundSprite->getTextureRect().height);
-
-        loadImage("resources/cloud.png", cloudTexture, cloudSprite);
-        cloudSprite->setPosition(WINDOW_WIDTH * (15/32.0) - cloudSprite->getTextureRect().width/2,
-                                 WINDOW_HEIGHT/8 - cloudSprite->getTextureRect().height/2);
 
         loadImage("resources/device.png", deviceTexture, deviceSprite);
         deviceSprite->setScale((float)DEVICE_IMAGE_WIDTH / deviceSprite->getTextureRect().width,

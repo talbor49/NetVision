@@ -19,7 +19,6 @@ void Graphics::draw_screen() {
         }
         window->clear();
         window->draw(*ResourceCenter::backgroundSprite);
-        window->draw(*ResourceCenter::cloudSprite);
 
         DeviceGraphics::drawDevices(DataCenter::getDevices());
         window->display();
