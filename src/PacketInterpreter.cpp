@@ -14,6 +14,10 @@ using namespace Tins;
 PacketInterpreter::PacketInterpreter() {
 }
 
+void PacketInterpreter::processDNS(const PDU& pdu) {
+	DNS dns = pdu.rfind_pdu<RawPDU>().to<DNS>();
+	std::cout << "Hello, I'm a DNS packet!" << std::endl;
+}
 void PacketInterpreter::processARP(const PDU &pdu) {
 								const ARP& arp = pdu.rfind_pdu<ARP>();
 								ARP::hwaddress_type sender_hw = arp.sender_hw_addr();

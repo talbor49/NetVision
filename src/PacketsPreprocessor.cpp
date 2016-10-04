@@ -30,18 +30,26 @@ bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
         const UDP* udp = pdu.find_pdu<UDP>();
         const ARP* arp = pdu.find_pdu<ARP>();
         const ICMP* icmp = pdu.find_pdu<ICMP>();
+
+        // SSDP, SSL
         const ICMPv6* icmpv6 = pdu.find_pdu<ICMPv6>();
-        if (arp) {
-                //std::cout << "packet id: " << packetId << " arp dst ip: " << arp->target_ip_addr() << " arp source ip" << arp->sender_ip_addr() << std::endl;
+        if(arp) {
+          // std::cout << "ARP" << std::endl;
                 pinterpreter.processARP(pdu);
         }
         else if (tcp) {
+          // std::cout << "TCP" << std::endl;
                 //std::cout << "packet id: " << packetId << " tcp dport: " << tcp->dport() << " tcp sport " << tcp->sport() << std::endl;
                 pinterpreter.processTCP(pdu);
         }
         else if (udp) {
+          // std::cout << "UDP" << std::endl;
                 //std::cout << "packet id: " << packetId << " udp dport: " << udp->dport() << " udp sport " << udp->sport() << std::endl;
-                pinterpreter.processUDP(pdu);
+                if (udp->sport() == 53 || udp->dport() == 53) {
+                  pinterpreter.processDNS(pdu);
+                } else {
+                  pinterpreter.processUDP(pdu);
+                }
         }
         else if (icmp) {
                 //std::cout << "packet id: " << packetId << " ICMP dst ip" << ip.dst_addr() << " ICMP src ip " << ip.src_addr() << std::endl;
