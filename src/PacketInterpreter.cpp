@@ -3,7 +3,6 @@
 
 #include <SFML/System/String.hpp>
 #include "PacketInterpreter.h"
-#include "NetworkUtils.h"
 
 
 std::string br = "00:00:00:00:00:00";
@@ -16,7 +15,9 @@ PacketInterpreter::PacketInterpreter() {
 
 void PacketInterpreter::processDNS(const PDU& pdu) {
 	DNS dns = pdu.rfind_pdu<RawPDU>().to<DNS>();
-	std::cout << "Hello, I'm a DNS packet!" << std::endl;
+	for (const auto &answer : dns.answers()) {
+			DnsResolver::AddDNSrecord(answer.data(), answer.dname());
+  }
 }
 void PacketInterpreter::processARP(const PDU &pdu) {
 								const ARP& arp = pdu.rfind_pdu<ARP>();

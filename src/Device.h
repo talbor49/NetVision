@@ -2,6 +2,7 @@
 #define NETVISION_DEVICE_H
 
 #include <tins/tins.h>
+#include "DnsResolver.h"
 
 using namespace Tins;
 

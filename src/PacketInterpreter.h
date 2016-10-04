@@ -3,6 +3,8 @@
 
 #include <tins/tins.h>
 #include "DataCenter.h"
+#include "NetworkUtils.h"
+#include "DnsResolver.h"
 
 using namespace Tins;
 
