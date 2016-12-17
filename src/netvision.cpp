@@ -2,9 +2,8 @@
 #include "graphics.h"
 #include "PacketsPreprocessor.h"
 #include <thread>
-#include <stdlib.h>
 #include "NetworkUtils.h"
-#include "sys/sysinfo.h"
+#include "netvision.h"
 #include <unistd.h>
 
 int main(int argc, char* argv [])
