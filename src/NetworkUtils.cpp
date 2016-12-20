@@ -30,6 +30,10 @@ void NetworkUtils::scanNetwork() {
 }
 
 void NetworkUtils::initialize(std::string netinterface) {
+        #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+        system("ipconfig /flushdns");
+
+
         interface = netinterface;
 
         std::vector<Utils::RouteEntry> entries = Utils::route_entries();
