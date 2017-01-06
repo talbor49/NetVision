@@ -1,7 +1,4 @@
-#ifndef NETWORK_UTILS_CPP
-#define NETWORK_UTILS_CPP
 #include "NetworkUtils.h"
-
 
 
 IPv4Address NetworkUtils::default_gateway;
@@ -30,7 +27,7 @@ void NetworkUtils::scanNetwork() {
 }
 
 void NetworkUtils::initialize(std::string netinterface) {
-        #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+        // if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
         system("ipconfig /flushdns");
 
 
@@ -60,7 +57,7 @@ void NetworkUtils::initialize(std::string netinterface) {
         self_ip_address = interfaceInfo.ip_addr;
         self_mac_address = interfaceInfo.hw_addr;
 
-        DataCenter::addDevice(Device(self_ip_address, self_mac_address, Device::DeviceType::SELF));
+        DataCenter::addDevice(new Device(self_ip_address, self_mac_address, Device::DeviceType::SELF));
 
 
 
@@ -100,4 +97,3 @@ void NetworkUtils::fillVendorMap() {
 
 }
 
-#endif

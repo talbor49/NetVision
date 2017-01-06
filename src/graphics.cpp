@@ -21,6 +21,7 @@ void Graphics::draw_screen() {
         window->draw(*ResourceCenter::backgroundSprite);
 
         DeviceGraphics::drawDevices(DataCenter::getDevices());
+        DeviceGraphics::drawPacketsOnTheWay(DataCenter::getPacketsOnTheWay());
         window->display();
 }
 

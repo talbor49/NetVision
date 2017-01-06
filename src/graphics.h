@@ -14,7 +14,6 @@ public:
         void draw_screen();
         sf::RenderWindow* window;
         sf::RenderWindow* getWindow();
-
         ~Graphics();
 
 };

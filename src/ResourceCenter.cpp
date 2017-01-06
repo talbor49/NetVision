@@ -13,6 +13,8 @@ sf::Sprite* ResourceCenter::routerSprite = new sf::Sprite();
 sf::Texture* ResourceCenter::routerTexture = new sf::Texture();
 sf::Sprite* ResourceCenter::myComputerSprite = new sf::Sprite();
 sf::Texture* ResourceCenter::myComputerTexture = new sf::Texture();
+sf::Sprite* ResourceCenter::arrowSprite = new sf::Sprite();
+sf::Texture* ResourceCenter::arrowTexture = new sf::Texture();
 
 
 void ResourceCenter::loadImages() {
@@ -41,6 +43,10 @@ void ResourceCenter::loadImages() {
         loadImage("resources/mycomputer.png", myComputerTexture, myComputerSprite);
         myComputerSprite->setScale((float)DEVICE_IMAGE_WIDTH / myComputerSprite->getTextureRect().width,
                                (float)DEVICE_IMAGE_HEIGHT / myComputerSprite->getTextureRect().height);
+
+        loadImage("resources/arrow2.png", arrowTexture, arrowSprite);
+        arrowSprite->setScale((float)ARROW_IMAGE_WIDTH / arrowSprite->getTextureRect().width,
+                               (float)ARROW_IMAGE_HEIGHT / arrowSprite->getTextureRect().height);
 }
 
 void ResourceCenter::loadImage(std::string imageFileName, sf::Texture* imageTexture, sf::Sprite* imageSprite) {

@@ -24,6 +24,8 @@ const std::string getDisplayName() const;
 const IPv4Address& getIPv4Address() const;
 const DeviceType getDeviceType() const;
 
+int X, Y;
+
 
 private:
 const HWAddress<6>& hwAddress;

@@ -25,6 +25,8 @@ extern sf::Sprite* cloudSprite;
 extern sf::Texture* cloudTexture;
 extern sf::Sprite* myComputerSprite;
 extern sf::Texture* myComputerTexture;
+extern sf::Sprite* arrowSprite;
+extern sf::Texture* arrowTexture;
 
 extern sf::RenderWindow* window;
 };

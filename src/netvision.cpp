@@ -9,8 +9,8 @@
 int main(int argc, char* argv [])
 {
 		if(argc != 2) {
-										std::cout << "Usage: " << *argv << " <interface>" << std::endl;
-										return 1;
+			std::cout << "Usage: " << *argv << " <interface>" << std::endl;
+			return 1;
 		}
 		std::string interface = argv[1];
 
@@ -23,7 +23,7 @@ int main(int argc, char* argv [])
 		std::cout << "Starting sniffer in the background." << std::endl;
 
 		pthread_t sniffer;
-		pthread_create(&sniffer, NULL, (void *(*)(void *)) PacketsPreprocessor::sniff, argv[1]);
+		pthread_create(&sniffer, NULL, (void *(*)(void *))  PacketsPreprocessor::sniff, argv[1]);
 
 
 		NetworkUtils::scanNetwork();
@@ -34,8 +34,8 @@ int main(int argc, char* argv [])
 
 		while (graphics.getWindow()->isOpen())
 		{
-										graphics.draw_screen();
-										usleep(20 * 1000); // 20 milliseconds
+			graphics.draw_screen();
+			usleep(20 * 1000); // 20 milliseconds
 		}
 
 		return 0;

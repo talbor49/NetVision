@@ -5,6 +5,8 @@ using namespace Tins;
 
 Device::Device(const IPv4Address& ip, const HWAddress<6>& hw, DeviceType deviceT) : hwAddress(hw), iPv4Address(ip) {
         deviceType = deviceT;
+        X = -999;
+        Y = -999;
 }
 
 const HWAddress<6>& Device::getHWAddress() const {
