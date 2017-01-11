@@ -5,6 +5,7 @@
 #include "NetworkUtils.h"
 #include "netvision.h"
 #include <unistd.h>
+#include <algorithm>    // std::max
 
 int main(int argc, char* argv [])
 {
@@ -34,8 +35,15 @@ int main(int argc, char* argv [])
 
 		while (graphics.getWindow()->isOpen())
 		{
+			std::clock_t begin = std::clock();
+
 			graphics.draw_screen();
-			usleep(20 * 1000); // 20 milliseconds
+
+			std::clock_t end = std::clock();
+			double elapsed_millisecs = double(end - begin) / CLOCKS_PER_SEC * 1000;
+			double time_need_to_sleep = 20 * 1000 - elapsed_millisecs;
+			if (time_need_to_sleep < 0) time_need_to_sleep = 0;
+			usleep(time_need_to_sleep); // milliseconds
 		}
 
 		return 0;

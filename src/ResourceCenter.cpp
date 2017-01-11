@@ -44,7 +44,7 @@ void ResourceCenter::loadImages() {
         myComputerSprite->setScale((float)DEVICE_IMAGE_WIDTH / myComputerSprite->getTextureRect().width,
                                (float)DEVICE_IMAGE_HEIGHT / myComputerSprite->getTextureRect().height);
 
-        loadImage("resources/arrow2.png", arrowTexture, arrowSprite);
+        loadImage("resources/arrow.png", arrowTexture, arrowSprite);
         arrowSprite->setScale((float)ARROW_IMAGE_WIDTH / arrowSprite->getTextureRect().width,
                                (float)ARROW_IMAGE_HEIGHT / arrowSprite->getTextureRect().height);
 }

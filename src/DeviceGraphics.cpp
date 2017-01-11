@@ -126,10 +126,10 @@ for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
 
 
     
-    if (deltaX < 0) {
-      deltaX = ((packetOTW.dst->X+DEVICE_IMAGE_WIDTH) - packetOTW.src->X);
-      deltaY = ((packetOTW.dst->Y+DEVICE_IMAGE_HEIGHT) - packetOTW.src->Y);
-    }
+    // if (deltaX < 0) {
+    //   deltaX = ((packetOTW.dst->X) - packetOTW.src->X);
+    //   deltaY = ((packetOTW.dst->Y) - packetOTW.src->Y);
+    // }
 
     double angleRad = atan ((double)deltaY/deltaX);
     double angle = angleRad * 180 / PI;
@@ -151,7 +151,7 @@ for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
 
     //source: (550, 170)destination: (50, 50)
     //std::cout << "source: (" << packetOTW.src->X << ", " << packetOTW.src->Y << ")" << 
-    //"destination: (" << packetOTW.dst->X << ", " << packetOTW.dst->Y << ")" << std::endl;
+     //"destination: (" << packetOTW.dst->X << ", " << packetOTW.dst->Y << ")" << std::endl;
 
     
 
@@ -174,9 +174,26 @@ for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
     }    
 
 
+    sf::Text packetDescriptorText("DNS", ipFont, 12);
+
+
+
     arrowSprite->setPosition(currentX, currentY);
     arrowSprite->setRotation(angle);
     window->draw(*arrowSprite);
+
+    // set the color
+    packetDescriptorText.setColor(sf::Color::Black);
+
+    // set the text style
+    packetDescriptorText.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
+
+    packetDescriptorText.setPosition(currentX, currentY);
+    packetDescriptorText.setRotation((int)angle%180);
+    window->draw(packetDescriptorText);
+
+
     // sf::RectangleShape line(sf::Vector2f(150, 5));
     // line.setPosition(packetOTW.src->X, packetOTW.src->Y);
     //std::cout << "Drawing packet from (" << packetOTW.src->X << ", " << packetOTW.src->Y << ")" << 
