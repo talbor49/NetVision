@@ -6,15 +6,23 @@
 #include "netvision.h"
 #include <unistd.h>
 #include <algorithm>    // std::max
+#include "CmdLineArgsParser.cpp"
 
 int main(int argc, char* argv [])
 {
-		if(argc != 2) {
-			std::cout << "Usage: " << *argv << " <interface>" << std::endl;
+		if(argc < 2) {
+			std::cout << "Usage: " << *argv << " <interface> [-dns] [-udp] [-tcp] [-arp] [-dhcp]" << std::endl;
 			return 1;
 		}
-		std::string interface = argv[1];
+		CmdLineArgsParser input(argc, argv);
+	    if(input.cmdOptionExists("-tcp")){ PacketsPreprocessor::sniffingTCP = true; }
+	    if(input.cmdOptionExists("-udp")){ PacketsPreprocessor::sniffingUDP = true; }
+	    if(input.cmdOptionExists("-dns")){ PacketsPreprocessor::sniffingDNS = true; }
+	    if(input.cmdOptionExists("-arp")){ PacketsPreprocessor::sniffingARP = true; }
+	    if(input.cmdOptionExists("-dhcp")){ PacketsPreprocessor::sniffingDHCP = true; }
+	    if(input.cmdOptionExists("-icmp")){ PacketsPreprocessor::sniffingICMP = true; }
 
+		std::string interface = argv[1];
 
 		std::cout << "Initializing sniffing..." << std::endl;
 		NetworkUtils::initialize(interface);

@@ -6,10 +6,11 @@
 class PacketOTW {
 
 public:
-	PacketOTW(Device* src, Device* dst, int totalSteps);
+	PacketOTW(Device* src, Device* dst, int totalSteps, std::string descriptor);
 	Device* src;
 	Device* dst;
 	int step, totalSteps;
+	std::string desc;
 };
 
 

@@ -10,6 +10,7 @@ using namespace Tins;
 class PacketsPreprocessor {
 public:
 static void sniff(char *interface);
+static bool sniffingTCP, sniffingUDP, sniffingDNS, sniffingARP, sniffingDHCP, sniffingICMP;
 private:
 static bool packets_processor(const PDU& pdu);
 static int packetId;

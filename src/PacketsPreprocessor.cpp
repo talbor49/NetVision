@@ -12,6 +12,9 @@ using namespace Tins;
 int PacketsPreprocessor::packetId = 0;
 PacketInterpreter pinterpreter;
 
+bool PacketsPreprocessor::sniffingTCP, PacketsPreprocessor::sniffingUDP, PacketsPreprocessor::sniffingDNS, 
+PacketsPreprocessor::sniffingARP, PacketsPreprocessor::sniffingDHCP, PacketsPreprocessor::sniffingICMP;
+
 
 bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
         /*
@@ -33,11 +36,19 @@ bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
 
         // SSDP, SSL
         const ICMPv6* icmpv6 = pdu.find_pdu<ICMPv6>();
-        if(arp) {
+        if(arp && sniffingARP) {
           // std::cout << "ARP" << std::endl;
                 pinterpreter.processARP(pdu);
         }
-        else if (tcp) {
+        else if (icmp && sniffingICMP) {
+                //std::cout << "packet id: " << packetId << " ICMP dst ip" << ip.dst_addr() << " ICMP src ip " << ip.src_addr() << std::endl;
+                pinterpreter.processICMP(pdu);
+        }
+        else if (icmpv6) {
+                //std::cout << "packet id: " << packetId << " ICMPv6 dst ip" << ip.dst_addr() << " ICMPv6 src ip " << ip.src_addr() << std::endl;
+                pinterpreter.processICMPv6(pdu);
+        }
+        else if (tcp && sniffingTCP) {
           // std::cout << "TCP" << std::endl;
                 //std::cout << "packet id: " << packetId << " tcp dport: " << tcp->dport() << " tcp sport " << tcp->sport() << std::endl;
                 pinterpreter.processTCP(pdu);
@@ -45,19 +56,11 @@ bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
         else if (udp) {
           // std::cout << "UDP" << std::endl;
                 //std::cout << "packet id: " << packetId << " udp dport: " << udp->dport() << " udp sport " << udp->sport() << std::endl;
-                if (udp->sport() == 53 || udp->dport() == 53) {
+                if (udp->sport() == 53 || udp->dport() == 53 && sniffingDNS) {
                   pinterpreter.processDNS(pdu);
-                } else {
+                } else if (sniffingUDP) {
                   pinterpreter.processUDP(pdu);
                 }
-        }
-        else if (icmp) {
-                //std::cout << "packet id: " << packetId << " ICMP dst ip" << ip.dst_addr() << " ICMP src ip " << ip.src_addr() << std::endl;
-                pinterpreter.processICMP(pdu);
-        }
-        else if (icmpv6) {
-                //std::cout << "packet id: " << packetId << " ICMPv6 dst ip" << ip.dst_addr() << " ICMPv6 src ip " << ip.src_addr() << std::endl;
-                pinterpreter.processICMPv6(pdu);
         }
         else if (ip) {
                 //Failed to recognize transport layer protocols - try IP.

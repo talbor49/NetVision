@@ -103,13 +103,8 @@ inline void DeviceGraphics::incrementInternalPosition() {
 
 
 void DeviceGraphics::drawPacketsOnTheWay(std::vector<PacketOTW>* packetsOTW) {
- // for (std::vector<PacketOTW>::iterator it = packetsOTW->begin(); 
-   //                           it != packetsOTW->end();) {
-    
-
 for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
     /* std::cout << someVector[i]; ... */
-    
     PacketOTW& packetOTW = (*packetsOTW)[i];
 
     packetOTW.step += 1;
@@ -120,6 +115,7 @@ for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
     //   packetsOTW->erase(packetsOTW->begin() + i);
     //   continue;
     // }
+    // std::cout << "drawing packet on the way, step: " << packetOTW.step << " total: " << packetOTW.totalSteps << std::endl;
 
     int deltaX = (packetOTW.dst->X - packetOTW.src->X);
     int deltaY = (packetOTW.dst->Y - packetOTW.src->Y);
@@ -167,14 +163,10 @@ for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
          abs(velY) * packetOTW.step >= abs(deltaY)) {
         packetsOTW->erase(packetsOTW->begin() + i);
         continue;
-     } else if (deltaX < 0 &&
-        abs(deltaX + ARROW_IMAGE_WIDTH) < abs(velX) * packetOTW.step) {
-        packetsOTW->erase(packetsOTW->begin() + i);
-        continue;
-    }    
+      }
 
 
-    sf::Text packetDescriptorText("DNS", ipFont, 12);
+    sf::Text packetDescriptorText(packetOTW.desc, ipFont, 24);
 
 
 
@@ -200,6 +192,6 @@ for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
     //  "to (" << packetOTW.dst->X << ", " << packetOTW.dst->Y << ")" << std::endl;
     // " from device: " << packetOTW.src->getDisplayName() <<
     // " to device: " << packetOTW.dst->getDisplayName() << std::endl;
-      i++;
+    i++;
   }
 }
