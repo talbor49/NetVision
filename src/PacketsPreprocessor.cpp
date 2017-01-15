@@ -13,7 +13,8 @@ int PacketsPreprocessor::packetId = 0;
 PacketInterpreter pinterpreter;
 
 bool PacketsPreprocessor::sniffingTCP, PacketsPreprocessor::sniffingUDP, PacketsPreprocessor::sniffingDNS, 
-PacketsPreprocessor::sniffingARP, PacketsPreprocessor::sniffingDHCP, PacketsPreprocessor::sniffingICMP;
+PacketsPreprocessor::sniffingARP, PacketsPreprocessor::sniffingDHCP, PacketsPreprocessor::sniffingICMP,
+PacketsPreprocessor::sniffingHTTP;
 
 
 bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
@@ -48,15 +49,19 @@ bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
                 //std::cout << "packet id: " << packetId << " ICMPv6 dst ip" << ip.dst_addr() << " ICMPv6 src ip " << ip.src_addr() << std::endl;
                 pinterpreter.processICMPv6(pdu);
         }
-        else if (tcp && sniffingTCP) {
+        else if (tcp) {
           // std::cout << "TCP" << std::endl;
                 //std::cout << "packet id: " << packetId << " tcp dport: " << tcp->dport() << " tcp sport " << tcp->sport() << std::endl;
-                pinterpreter.processTCP(pdu);
+                if (tcp->sport() == HTTP_PORT || tcp->dport() == HTTP_PORT && sniffingHTTP) {
+                  pinterpreter.processHTTP(pdu);
+                } else if (sniffingTCP) {
+                  pinterpreter.processTCP(pdu);
+                }
         }
         else if (udp) {
           // std::cout << "UDP" << std::endl;
                 //std::cout << "packet id: " << packetId << " udp dport: " << udp->dport() << " udp sport " << udp->sport() << std::endl;
-                if (udp->sport() == 53 || udp->dport() == 53 && sniffingDNS) {
+                if (sniffingDNS && udp->sport() == DNS_PORT || udp->dport() == DNS_PORT) {
                   pinterpreter.processDNS(pdu);
                 } else if (sniffingUDP) {
                   pinterpreter.processUDP(pdu);
@@ -76,10 +81,9 @@ bool PacketsPreprocessor::packets_processor(const PDU& pdu) {
 }
 
 void PacketsPreprocessor::sniff(char *interface) {
-        // Sniff on the provided interface in promiscuos mode
+        // Sniff on the provided interface in promiscuous mode
         SnifferConfiguration config;
         config.set_promisc_mode(true);
-        // Only capture udp packets sent to port 53
         Sniffer sniffer(interface, config);
 
         // Start the capture

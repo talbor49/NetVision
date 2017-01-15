@@ -17,6 +17,7 @@ public:
 	void processICMP(const PDU& pdu);
 	void processICMPv6(const PDU& pdu);
 	void processDNS(const PDU& pdu);
+	void processHTTP(const PDU& pdu);
 private:
 	DataCenter dc;
 };

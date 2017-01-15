@@ -11,7 +11,7 @@
 int main(int argc, char* argv [])
 {
 		if(argc < 2) {
-			std::cout << "Usage: " << *argv << " <interface> [-dns] [-udp] [-tcp] [-arp] [-dhcp]" << std::endl;
+			std::cout << "Usage: " << *argv << " <interface> [-dns] [-udp] [-tcp] [-arp] [-dhcp] [-icmp] [-http]" << std::endl;
 			return 1;
 		}
 		CmdLineArgsParser input(argc, argv);
@@ -21,6 +21,7 @@ int main(int argc, char* argv [])
 	    if(input.cmdOptionExists("-arp")){ PacketsPreprocessor::sniffingARP = true; }
 	    if(input.cmdOptionExists("-dhcp")){ PacketsPreprocessor::sniffingDHCP = true; }
 	    if(input.cmdOptionExists("-icmp")){ PacketsPreprocessor::sniffingICMP = true; }
+	    if(input.cmdOptionExists("-http")){ PacketsPreprocessor::sniffingHTTP = true; }
 
 		std::string interface = argv[1];
 
@@ -48,8 +49,8 @@ int main(int argc, char* argv [])
 			graphics.draw_screen();
 
 			std::clock_t end = std::clock();
-			double elapsed_millisecs = double(end - begin) / CLOCKS_PER_SEC * 1000;
-			double time_need_to_sleep = 20 * 1000 - elapsed_millisecs;
+			int elapsed_millisecs = (int)(double(end - begin) / CLOCKS_PER_SEC * 1000);
+			int time_need_to_sleep = 20 * 1000 - elapsed_millisecs;
 			if (time_need_to_sleep < 0) time_need_to_sleep = 0;
 			usleep(time_need_to_sleep); // milliseconds
 		}

@@ -124,5 +124,26 @@ void PacketInterpreter::processICMPv6(const PDU &pdu) {
 	std::cout << "ICMPv6!!!!" << std::endl;
 }
 
+void PacketInterpreter::processHTTP(const PDU &pdu) {
+	const IP& ip = pdu.rfind_pdu<IP>();
+	const EthernetII& ether = pdu.rfind_pdu<EthernetII>();
+
+	IPv4Address sender_ip = ip.src_addr();
+	EthernetII::address_type sender_mac = ether.dst_addr();
+	IPv4Address target_ip = ip.dst_addr();
+	EthernetII::address_type target_mac = ether.dst_addr();
+
+	Device* sender = new Device(*new IPv4Address(sender_ip), *new HWAddress<6>(sender_mac), Device::DeviceType::DEFAULT);
+	if (!DataCenter::hasDevice(*sender)) {
+		DataCenter::addDevice(sender);
+	} else { delete sender; }
+	Device* target = new Device(*new IPv4Address(target_ip), *new HWAddress<6>(target_mac), Device::DeviceType::DEFAULT);
+	if (!DataCenter::hasDevice(*target)) {
+		DataCenter::addDevice(target);
+	} else { delete target; }
+
+    PacketOTW packetotw(DataCenter::getDeviceByIP(sender_ip), DataCenter::getDeviceByIP(target_ip), 5, "HTTP");
+	DataCenter::addPacketOTW(packetotw);
+}
 
 #endif
