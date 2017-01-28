@@ -36,7 +36,14 @@ void PacketInterpreter::processDNS(const PDU& pdu) {
 		DataCenter::addDevice(target);
 	} else { delete target; }
 
-    PacketOTW packetotw(DataCenter::getDeviceByIP(sender_ip), DataCenter::getDeviceByIP(target_ip), 5, "DNS");
+	UDP udp = pdu.rfind_pdu<UDP>();
+	std::string descriptionString = "";
+	if (udp.dport() == 53 && dns.queries().size() > 0) {
+    	descriptionString = "DNS request " + (*dns.queries().begin()).dname();
+	} else if (dns.answers().size() > 0){
+		descriptionString = "DNS answer " + (*dns.answers().begin()).data();
+	}
+	PacketOTW packetotw(PacketOTW(DataCenter::getDeviceByIP(sender_ip), DataCenter::getDeviceByIP(target_ip), 5, descriptionString));
 	DataCenter::addPacketOTW(packetotw);
 }
 void PacketInterpreter::processARP(const PDU &pdu) {

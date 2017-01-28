@@ -160,13 +160,13 @@ for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
     int currentY = packetOTW.src->Y + velY * packetOTW.step; // +...
 
      if (abs(velX) * packetOTW.step >= abs(deltaX) ||
-         abs(velY) * packetOTW.step >= abs(deltaY)) {
+         abs(velY) * packetOTW.step >= abs(deltaY)) { 
         packetsOTW->erase(packetsOTW->begin() + i);
         continue;
       }
 
 
-    sf::Text packetDescriptorText(packetOTW.desc, ipFont, 24);
+    sf::Text packetDescriptorText(packetOTW.desc, ipFont, 16);
 
 
 
@@ -184,6 +184,7 @@ for(std::vector<PacketOTW>::size_type i = 0; i != packetsOTW->size();) {
     packetDescriptorText.setPosition(currentX, currentY);
     packetDescriptorText.setRotation((int)angle%180);
     window->draw(packetDescriptorText);
+
 
 
     // sf::RectangleShape line(sf::Vector2f(150, 5));
