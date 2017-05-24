@@ -15,6 +15,7 @@ int main(int argc, char* argv [])
 			return 1;
 		}
 		CmdLineArgsParser input(argc, argv);
+
 	    if(input.cmdOptionExists("-tcp")){  std::cout << " tcp enabled" << std::endl; PacketsPreprocessor::sniffingTCP = true; }
 	    if(input.cmdOptionExists("-udp")){  std::cout << " udp enabled" << std::endl; PacketsPreprocessor::sniffingUDP = true; }
 	    if(input.cmdOptionExists("-dns")){  std::cout << " dns enabled" << std::endl; PacketsPreprocessor::sniffingDNS = true; }
@@ -22,6 +23,23 @@ int main(int argc, char* argv [])
 	    if(input.cmdOptionExists("-dhcp")){ std::cout << " dhcp enabled" << std::endl;  PacketsPreprocessor::sniffingDHCP = true; }
 	    if(input.cmdOptionExists("-icmp")){ std::cout << " icmp enabled" << std::endl;  PacketsPreprocessor::sniffingICMP = true; }
 	    if(input.cmdOptionExists("-http")){ std::cout << " http enabled" << std::endl;  PacketsPreprocessor::sniffingHTTP = true; }
+
+        if (!PacketsPreprocessor::sniffingTCP &&
+            !PacketsPreprocessor::sniffingUDP &&
+            !PacketsPreprocessor::sniffingDNS &&
+            !PacketsPreprocessor::sniffingARP &&
+            !PacketsPreprocessor::sniffingDHCP &&
+            !PacketsPreprocessor::sniffingICMP &&
+            !PacketsPreprocessor::sniffingHTTP) {
+            // If no flags were set, set all flags to true
+            PacketsPreprocessor::sniffingTCP = true;
+            PacketsPreprocessor::sniffingUDP = true;
+            PacketsPreprocessor::sniffingDNS = true;
+            PacketsPreprocessor::sniffingARP = true;
+            PacketsPreprocessor::sniffingDHCP = true;
+            PacketsPreprocessor::sniffingICMP = true;
+            PacketsPreprocessor::sniffingHTTP = true;
+        }
 
 		std::string interface = argv[1];
 
